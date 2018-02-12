@@ -47,6 +47,14 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        enumerateChildNodes(withName: "background", using: ({
+            (node, error) in
+            let bg = node as! SKSpriteNode
+            bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
+            if bg.position.x <= -bg.size.width {
+                bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
+            }
+        }))
+        
     }
 }
