@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A54AD5A4203269BA003114BA /* GameObjects.sks in Resources */ = {isa = PBXBuildFile; fileRef = A54AD5A3203269BA003114BA /* GameObjects.sks */; };
+		A536EB0E2040AC1E00D77329 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536EB082040AC1D00D77329 /* GameScene.swift */; };
+		A536EB0F2040AC1E00D77329 /* Bubbles.sks in Resources */ = {isa = PBXBuildFile; fileRef = A536EB092040AC1D00D77329 /* Bubbles.sks */; };
+		A536EB102040AC1E00D77329 /* FishCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536EB0A2040AC1D00D77329 /* FishCreater.swift */; };
+		A536EB122040AC1E00D77329 /* BlowfishStarCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536EB0C2040AC1E00D77329 /* BlowfishStarCreater.swift */; };
+		A536EB132040AC1E00D77329 /* GameObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536EB0D2040AC1E00D77329 /* GameObjects.swift */; };
+		A536EB152040B2E300D77329 /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A536EB142040B2E200D77329 /* CoinSound.mp3 */; };
 		A58BB3D92032227E00738C44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BB3D82032227E00738C44 /* AppDelegate.swift */; };
-		A58BB3DB2032227E00738C44 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58BB3DA2032227E00738C44 /* GameScene.sks */; };
-		A58BB3DD2032227E00738C44 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58BB3DC2032227E00738C44 /* Actions.sks */; };
-		A58BB3DF2032227E00738C44 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BB3DE2032227E00738C44 /* GameScene.swift */; };
 		A58BB3E12032227E00738C44 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BB3E02032227E00738C44 /* MainViewController.swift */; };
 		A58BB3E42032227E00738C44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58BB3E22032227E00738C44 /* Main.storyboard */; };
 		A58BB3E62032227E00738C44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58BB3E52032227E00738C44 /* Assets.xcassets */; };
@@ -40,12 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A54AD5A3203269BA003114BA /* GameObjects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameObjects.sks; sourceTree = "<group>"; };
+		A536EB082040AC1D00D77329 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = EnergyFish/GameScene.swift; sourceTree = SOURCE_ROOT; };
+		A536EB092040AC1D00D77329 /* Bubbles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Bubbles.sks; path = EnergyFish/Bubbles.sks; sourceTree = SOURCE_ROOT; };
+		A536EB0A2040AC1D00D77329 /* FishCreater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FishCreater.swift; path = EnergyFish/FishCreater.swift; sourceTree = SOURCE_ROOT; };
+		A536EB0C2040AC1E00D77329 /* BlowfishStarCreater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlowfishStarCreater.swift; path = EnergyFish/BlowfishStarCreater.swift; sourceTree = SOURCE_ROOT; };
+		A536EB0D2040AC1E00D77329 /* GameObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameObjects.swift; path = EnergyFish/GameObjects.swift; sourceTree = SOURCE_ROOT; };
+		A536EB142040B2E200D77329 /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CoinSound.mp3; path = EnergyFish/CoinSound.mp3; sourceTree = SOURCE_ROOT; };
 		A58BB3D52032227E00738C44 /* EnergyFish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyFish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58BB3D82032227E00738C44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A58BB3DA2032227E00738C44 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		A58BB3DC2032227E00738C44 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		A58BB3DE2032227E00738C44 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A58BB3E02032227E00738C44 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A58BB3E32032227E00738C44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A58BB3E52032227E00738C44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +90,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A536EB072040ABF100D77329 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				A536EB142040B2E200D77329 /* CoinSound.mp3 */,
+				A536EB082040AC1D00D77329 /* GameScene.swift */,
+				A536EB0D2040AC1E00D77329 /* GameObjects.swift */,
+				A536EB0A2040AC1D00D77329 /* FishCreater.swift */,
+				A536EB0C2040AC1E00D77329 /* BlowfishStarCreater.swift */,
+				A536EB092040AC1D00D77329 /* Bubbles.sks */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		A58BB3CC2032227E00738C44 = {
 			isa = PBXGroup;
 			children = (
@@ -112,10 +129,7 @@
 				A58BB3E02032227E00738C44 /* MainViewController.swift */,
 				A58BB411203225AE00738C44 /* MenuScene.sks */,
 				A58BB410203225AE00738C44 /* MenuScene.swift */,
-				A58BB3DA2032227E00738C44 /* GameScene.sks */,
-				A54AD5A3203269BA003114BA /* GameObjects.sks */,
-				A58BB3DE2032227E00738C44 /* GameScene.swift */,
-				A58BB3DC2032227E00738C44 /* Actions.sks */,
+				A536EB072040ABF100D77329 /* Game */,
 				A58BB3E22032227E00738C44 /* Main.storyboard */,
 				A58BB3E52032227E00738C44 /* Assets.xcassets */,
 				A58BB3E72032227E00738C44 /* LaunchScreen.storyboard */,
@@ -250,13 +264,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A536EB0F2040AC1E00D77329 /* Bubbles.sks in Resources */,
+				A536EB152040B2E300D77329 /* CoinSound.mp3 in Resources */,
 				A58BB3E42032227E00738C44 /* Main.storyboard in Resources */,
 				A58BB413203225AE00738C44 /* MenuScene.sks in Resources */,
-				A58BB3DB2032227E00738C44 /* GameScene.sks in Resources */,
-				A54AD5A4203269BA003114BA /* GameObjects.sks in Resources */,
 				A58BB3E62032227E00738C44 /* Assets.xcassets in Resources */,
 				A58BB3E92032227E00738C44 /* LaunchScreen.storyboard in Resources */,
-				A58BB3DD2032227E00738C44 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,9 +294,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A58BB3DF2032227E00738C44 /* GameScene.swift in Sources */,
+				A536EB132040AC1E00D77329 /* GameObjects.swift in Sources */,
+				A536EB102040AC1E00D77329 /* FishCreater.swift in Sources */,
 				A58BB412203225AE00738C44 /* MenuScene.swift in Sources */,
+				A536EB122040AC1E00D77329 /* BlowfishStarCreater.swift in Sources */,
 				A58BB3E12032227E00738C44 /* MainViewController.swift in Sources */,
+				A536EB0E2040AC1E00D77329 /* GameScene.swift in Sources */,
 				A58BB3D92032227E00738C44 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

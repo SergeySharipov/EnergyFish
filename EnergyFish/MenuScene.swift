@@ -40,14 +40,13 @@ class MenuScene: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         if let view = self.view {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = GameScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFit
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
+            let scene = GameScene(size: view.bounds.size)
+            let skView = view 
+            skView.showsFPS = true
+            skView.showsNodeCount = true
+            skView.ignoresSiblingOrder = false
+            scene.scaleMode = .aspectFit
+            skView.presentScene(scene)
         }
         
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
@@ -74,10 +73,6 @@ class MenuScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
