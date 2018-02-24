@@ -10,28 +10,36 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+extension UIViewController {
+    func reloadViewFromNib() {
+        let parent = view.superview
+        view.removeFromSuperview()
+        view = nil
+        parent?.addSubview(view) // This line causes the view to be reloaded
+    }
+}
+
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = MenuScene(fileNamed: "MenuScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFit
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
     }
 
+    @IBAction func newGame(_ sender: UIButton) {
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        
+        let scene = GameScene(size: view.bounds.size)
+        let skView = view as! SKView
+        skView.showsFPS = true
+        skView.showsNodeCount = true
+        skView.ignoresSiblingOrder = false
+        scene.scaleMode = .aspectFit
+        skView.presentScene(scene)
+    }
+    
+    @IBAction func showInstruction(_ sender: UIButton) {
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }

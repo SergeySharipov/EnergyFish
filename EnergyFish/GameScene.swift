@@ -2,107 +2,176 @@
 //  GameScene.swift
 //  EnergyFish
 //
-//  Created by Sergey on 12.02.2018.
+//  Created by Sergey on 21.02.2018.
 //  Copyright © 2018 Sergey. All rights reserved.
 //
 
 import SpriteKit
-import GameplayKit
 
-class GameScene: SKScene,SKPhysicsContactDelegate {
-    let noCategory:UInt32 = 0
-    let hookCategory:UInt32 = 0b1
-    let fishCategory:UInt32 = 0b1 << 1
-    let coinCategory:UInt32 = 0b1 << 2
-    let borderCategory:UInt32 = 0b1 << 3
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var fish:SKSpriteNode?
+    var gameStarted = Bool(false)
+    var died = Bool(false)
+    let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     
+    var score = Int(0)
+    var scoreLbl = SKLabelNode()
+    var highscoreLbl = SKLabelNode()
+    var taptoplayLbl = SKLabelNode()
+    var restartBtn = SKSpriteNode()
+    var closeBtn = SKSpriteNode()
+    var pauseBtn = SKSpriteNode()
+    var logoImg = SKSpriteNode()
+    var blowfishStar = SKNode()
+    var moveAndRemove = SKAction()
     
-    func random() -> CGFloat{
-        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-    }
+    var blowfishStarCreater = BlowfishStarCreater()
+    var fishCreater = FishCreater()
     
-    func random(min : CGFloat, max : CGFloat) -> CGFloat{
-        return random() * (max - min) + min
-    }
+    var fish = SKSpriteNode()
     
     override func didMove(to view: SKView) {
-        
-        self.physicsWorld.contactDelegate = self
-        
-        fish = self.childNode(withName: "fish") as? SKSpriteNode
-        fish?.physicsBody?.categoryBitMask = fishCategory
-        fish?.physicsBody?.collisionBitMask = borderCategory
-        fish?.physicsBody?.contactTestBitMask = hookCategory | coinCategory | borderCategory
-        
-        let coin = self.childNode(withName: "coin") as? SKSpriteNode
-        coin?.physicsBody?.categoryBitMask = coinCategory
-        coin?.physicsBody?.collisionBitMask = noCategory
-        coin?.physicsBody?.contactTestBitMask = fishCategory
-        
-        let hook = self.childNode(withName: "hook") as? SKSpriteNode
-        hook?.physicsBody?.categoryBitMask = hookCategory
-        hook?.physicsBody?.collisionBitMask = noCategory
-        hook?.physicsBody?.contactTestBitMask = fishCategory
-        
-        let border = self.childNode(withName: "border") as? SKSpriteNode
-        border?.physicsBody?.categoryBitMask = borderCategory
-        border?.physicsBody?.collisionBitMask = borderCategory
-        border?.physicsBody?.contactTestBitMask = fishCategory
-        
-    }
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        let cA:UInt32 = contact.bodyA.categoryBitMask
-        let cB:UInt32 = contact.bodyB.categoryBitMask
-        
-        if cA == fishCategory || cB == fishCategory {
-            let otherNode:SKNode = (cA == fishCategory) ? contact.bodyB.node! : contact.bodyA.node!
-            playerDidCollide(with: otherNode)
-        }
-    
-    }
-    
-    func playerDidCollide(with other:SKNode) {
-        let otherCategory = other.physicsBody?.categoryBitMask
-        if otherCategory == coinCategory {
-            other.removeFromParent()
-        }
-        else if otherCategory == hookCategory {
-            other.removeFromParent()
-            fish?.removeFromParent()
-        }
-    }
-    
-    func touchDown(atPoint pos : CGPoint) {
-        
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-   
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-fish?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+        createScene()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        if gameStarted == false{
+            gameStarted =  true
+            fish.physicsBody?.affectedByGravity = true
+            createPauseBtn()
+            logoImg.run(SKAction.scale(to: 0.5, duration: 0.3), completion: {
+                self.logoImg.removeFromParent()
+            })
+            taptoplayLbl.removeFromParent()
+            
+            let spawn = SKAction.run({
+                () in
+                self.blowfishStar = self.createBlowfishStar()
+                self.blowfishStar.run(self.moveAndRemove)
+                self.addChild(self.blowfishStar)
+            })
+            
+            let delay = SKAction.wait(forDuration: 2)
+            let SpawnDelay = SKAction.sequence([spawn, delay])
+            let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
+            self.run(spawnDelayForever)
+            
+            let distance = CGFloat(self.frame.width + blowfishStar.frame.width)
+            let moveBlowfishStar = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
+            let removeBlowfishStar = SKAction.removeFromParent()
+            moveAndRemove = SKAction.sequence([moveBlowfishStar, removeBlowfishStar])
+            
+            fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            fish.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+            
+        } else if died == false {
+            fish.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            fish.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+        }
         
-     
+        for touch in touches{
+            let location = touch.location(in: self)
+            if died == true{
+                if restartBtn.contains(location){
+                    if UserDefaults.standard.object(forKey: "highestScore") != nil {
+                        let hscore = UserDefaults.standard.integer(forKey: "highestScore")
+                        if hscore < Int(scoreLbl.text!)!{
+                            UserDefaults.standard.set(scoreLbl.text, forKey: "highestScore")
+                        }
+                    } else {
+                        UserDefaults.standard.set(0, forKey: "highestScore")
+                    }
+                    restartScene()
+                } else if closeBtn.contains(location){
+                    closeScene()
+                }
+            } else {
+                if pauseBtn.contains(location){
+                    if self.isPaused == false{
+                        self.isPaused = true
+                        pauseBtn.texture = SKTexture(imageNamed: "play")
+                    } else {
+                        self.isPaused = false
+                        pauseBtn.texture = SKTexture(imageNamed: "pause")
+                    }
+                }
+            }
+        }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    func closeScene(){
+        let viewController = self.view?.window?.rootViewController
+        viewController?.reloadViewFromNib()
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    func restartScene(){
+        self.removeAllChildren()
+        self.removeAllActions()
+        died = false
+        gameStarted = false
+        score = 0
+        createScene()
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    func createScene(){
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.fishCategory
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.fishCategory
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.affectedByGravity = false
+        
+        self.physicsWorld.contactDelegate = self
+        self.backgroundColor = SKColor(red: 130.0/255.0, green: 215.0/255.0, blue: 231.0/255.0, alpha: 1.0)
+        
+        for i in 0..<2 {
+            let background = SKSpriteNode(imageNamed: "background")
+            background.setScale(0.7)
+            background.anchorPoint = CGPoint.init(x: 0, y: 0)
+            background.position = CGPoint(x:CGFloat(i) * background.size.width, y:0)
+            background.name = "background"
+            self.addChild(background)
+        }
+        
+        self.addChild(createBubbles())
+        
+        self.fish = createFish()
+        self.addChild(fish)
+        
+        scoreLbl = createScoreLabel()
+        self.addChild(scoreLbl)
+        
+        highscoreLbl = createHighscoreLabel()
+        self.addChild(highscoreLbl)
+        
+        createLogo()
+        
+        taptoplayLbl = createTaptoplayLabel()
+        self.addChild(taptoplayLbl)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+        
+        if (firstBody.categoryBitMask == CollisionBitMask.fishCategory && secondBody.categoryBitMask == CollisionBitMask.blowfishCategory) || (firstBody.categoryBitMask == CollisionBitMask.blowfishCategory && secondBody.categoryBitMask == CollisionBitMask.fishCategory) || (firstBody.categoryBitMask == CollisionBitMask.fishCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory) || (firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.fishCategory) {
+            enumerateChildNodes(withName: BlowfishStarCreater.NAME, using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            if died == false{
+                died = true
+                createGameOverBtns()
+                pauseBtn.removeFromParent()
+                self.fish.removeAllActions()
+            }
+        } else if (firstBody.categoryBitMask == CollisionBitMask.fishCategory && secondBody.categoryBitMask == CollisionBitMask.starCategory) || (firstBody.categoryBitMask == CollisionBitMask.starCategory && secondBody.categoryBitMask == CollisionBitMask.fishCategory) {
+            run(coinSound)
+            score += 1
+            scoreLbl.text = "\(score)"
+            firstBody.node?.removeFromParent()
+        }
     }
     
     func moveBackground() {
@@ -117,7 +186,8 @@ fish?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
     }
     
     override func update(_ currentTime: TimeInterval) {
-        moveBackground()
-        
+        if gameStarted == true && died == false{
+            moveBackground()
+        }
     }
 }
