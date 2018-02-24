@@ -22,9 +22,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZG-Sk-2fy">
-                                <rect key="frame" x="105" y="296" width="165" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZG-Sk-2fy">
+                                <rect key="frame" x="74" y="333" width="227" height="65"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.2096996039" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Cm9-HW-HNH"/>
+                                    <constraint firstAttribute="width" constant="227" id="kpZ-YS-bZP"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.93290602990000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Instruction">
@@ -34,9 +38,13 @@
                                     <action selector="showInstruction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eLd-k0-IBH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2X-sA-vjv">
-                                <rect key="frame" x="105" y="243" width="165" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2X-sA-vjv">
+                                <rect key="frame" x="74" y="244" width="227" height="65"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.2096996039" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="S6E-Ds-wpM"/>
+                                    <constraint firstAttribute="height" constant="65" id="u6A-ze-CWa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.93290602990000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Play Game">
@@ -49,18 +57,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="e2X-sA-vjv" secondAttribute="trailing" constant="105" id="8GE-yA-6SM"/>
-                            <constraint firstItem="e2X-sA-vjv" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="105" id="P5H-e1-WEA"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tZG-Sk-2fy" secondAttribute="trailing" constant="105" id="cMp-Go-M9U"/>
-                            <constraint firstItem="tZG-Sk-2fy" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="105" id="sTG-KR-CWD"/>
-                            <constraint firstItem="e2X-sA-vjv" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="223" id="uoH-4h-t3b"/>
-                            <constraint firstItem="tZG-Sk-2fy" firstAttribute="top" secondItem="e2X-sA-vjv" secondAttribute="bottom" constant="8" id="xIE-PZ-Ua0"/>
+                            <constraint firstItem="e2X-sA-vjv" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="74" id="Geg-jA-jZd"/>
+                            <constraint firstItem="tZG-Sk-2fy" firstAttribute="top" secondItem="e2X-sA-vjv" secondAttribute="bottom" constant="8" id="RHm-07-dTt"/>
+                            <constraint firstItem="e2X-sA-vjv" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="203" id="Vb5-KN-VP3"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tZG-Sk-2fy" secondAttribute="trailing" constant="74" id="Wux-5I-YXa"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="e2X-sA-vjv" secondAttribute="trailing" constant="74" id="uWU-ri-BRk"/>
+                            <constraint firstItem="tZG-Sk-2fy" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="74" id="yUr-4d-ooi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="52" y="115.59220389805098"/>
         </scene>
     </scenes>
     <resources>
