@@ -36,6 +36,7 @@
                                 </state>
                                 <connections>
                                     <action selector="showInstruction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eLd-k0-IBH"/>
+                                    <segue destination="s2V-Kv-hu1" kind="show" id="N4k-si-kus"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2X-sA-vjv">
@@ -70,6 +71,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="115.59220389805098"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="R97-lG-cgk">
+            <objects>
+                <viewController id="s2V-Kv-hu1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fKk-1t-vEl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="HA1-1h-TZl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRW-ma-aDP">
+                                <rect key="frame" x="74" y="547" width="227" height="65"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.6181503081253521" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="0Mg-Lm-jW3"/>
+                                    <constraint firstAttribute="height" constant="65" id="UC4-9K-Pmk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.93290602990000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="p94-0r-WMa"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="WMZ-vx-oUY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lz1-Rv-aAe" firstAttribute="bottom" secondItem="KRW-ma-aDP" secondAttribute="bottom" constant="55" id="XNg-Gf-dbR"/>
+                            <constraint firstItem="KRW-ma-aDP" firstAttribute="leading" secondItem="lz1-Rv-aAe" secondAttribute="leading" constant="74" id="Y4K-F5-5hc"/>
+                            <constraint firstItem="lz1-Rv-aAe" firstAttribute="trailing" secondItem="KRW-ma-aDP" secondAttribute="trailing" constant="74" id="weh-Fb-00y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lz1-Rv-aAe"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hAT-Dz-rN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1026" y="116"/>
         </scene>
     </scenes>
     <resources>
